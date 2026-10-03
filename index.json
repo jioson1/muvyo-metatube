@@ -1,0 +1,16 @@
+{
+  "name": "",
+  "sequence": 1,
+  "plugins": [
+    {
+      "id": "jioson1.metadata",
+      "name": "MetaTube 刮削",
+      "version": "1.0.0",
+      "description": "对接自部署的 MetaTube Server，为 Vyo 媒体库提供影片搜索与元数据刮削（标题、简介、演员、厂牌、类型、评分等）。\n\n需先部署 MetaTube Server，详见 https://metatube-community.github.io/wiki/",
+      "author": "jioson1",
+      "path": "plugins/jioson1.metadata",
+      "api": 1
+    }
+  ],
+  "public_key": "P123BVS0qTUOr/qoKDQza2O6KxyBvVcr+MD69xA49SA="
+}

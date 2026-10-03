@@ -1,0 +1,63 @@
+{
+  "api": 1,
+  "id": "jioson1.metadata",
+  "name": "MetaTube 刮削",
+  "version": "1.0.0",
+  "author": "jioson1",
+  "description": "对接自部署的 MetaTube Server，为 Vyo 媒体库提供影片搜索与元数据刮削（标题、简介、演员、厂牌、类型、评分等）。\n\n需先部署 MetaTube Server，详见 https://metatube-community.github.io/wiki/",
+  "entry": "main.js",
+  "permissions": {
+    "service": {"label": "MetaTube Server 地址", "help": "你自部署的 MetaTube Server 地址，例如 http://192.168.1.10:8788。建议使用 HTTPS 以确保图片能正常显示。"}
+  },
+  "config": [
+    {"key": "token", "label": "访问令牌", "type": "secret", "help": "MetaTube Server 的访问令牌；后端未设置则留空"},
+    {"key": "image_quality", "label": "图片质量", "type": "number", "min": 1, "max": 100, "step": 1, "unit": "%", "default": "90", "help": "JPEG 压缩质量，1-100"},
+    {"key": "enable_directors", "label": "添加导演", "type": "bool", "default": "true"},
+    {"key": "enable_ratings", "label": "显示评分", "type": "bool", "default": "true", "help": "展示来源站点社区评分（0-10）"},
+    {"key": "enable_template", "label": "自定义命名", "type": "bool", "default": "false", "help": "使用自定义模板生成标题与副标题"},
+    {"key": "name_template", "label": "标题模板", "type": "text", "default": "{number} {title}", "help": "变量: {number} {title} {series} {maker} {label} {director} {actors} {first_actor} {year} {month} {date}"},
+    {"key": "tagline_template", "label": "副标题模板", "type": "text", "default": "", "help": "留空则不设副标题，变量同标题模板"},
+    {"key": "enable_title_substitution", "label": "标题替换", "type": "bool", "default": "false"},
+    {"key": "title_substitution_table", "label": "标题替换表", "type": "textarea", "help": "每行一条，等号分隔，留空目标可删除源文本。例: 某文本=替换文本"},
+    {"key": "enable_genre_substitution", "label": "类型替换", "type": "bool", "default": "false"},
+    {"key": "genre_substitution_table", "label": "类型替换表", "type": "textarea", "help": "每行一条，等号分隔。例: documentary=纪录片"},
+    {"key": "enable_actor_substitution", "label": "演员替换", "type": "bool", "default": "false"},
+    {"key": "actor_substitution_table", "label": "演员替换表", "type": "textarea", "help": "每行一条，等号分隔。例: 旧名=新名"},
+    {"key": "enable_provider_filter", "label": "来源过滤", "type": "bool", "default": "false", "help": "按来源优先级过滤、重排搜索结果"},
+    {"key": "provider_filter", "label": "来源优先级", "type": "text", "help": "来源名称不区分大小写，从高到低用逗号分隔。例: DUGA,FANZA,MGS"},
+    {"key": "enable_translation", "label": "自动翻译", "type": "bool", "default": "false", "help": "通过 MetaTube Server 翻译标题与简介"},
+    {"key": "translation_engine", "label": "翻译引擎", "type": "select", "default": "GoogleFree", "options": [{"value": "GoogleFree", "label": "Google 免费版"}, {"value": "Baidu", "label": "百度"}, {"value": "Google", "label": "Google"}, {"value": "DeepL", "label": "DeepL"}, {"value": "OpenAi", "label": "OpenAI"}]},
+    {"key": "translation_mode", "label": "翻译内容", "type": "select", "default": "Both", "options": [{"value": "Title", "label": "仅标题"}, {"value": "Summary", "label": "仅简介"}, {"value": "Both", "label": "标题和简介"}]},
+    {"key": "translation_to", "label": "目标语言", "type": "text", "default": "zh", "help": "ISO 语言代码，如 zh、en"},
+    {"key": "baidu_app_id", "label": "百度 App ID", "type": "secret"},
+    {"key": "baidu_app_key", "label": "百度 App Key", "type": "secret"},
+    {"key": "google_api_key", "label": "Google API Key", "type": "secret"},
+    {"key": "deepl_api_key", "label": "DeepL API Key", "type": "secret"},
+    {"key": "openai_api_key", "label": "OpenAI API Key", "type": "secret"},
+    {"key": "openai_model", "label": "OpenAI 模型", "type": "text", "default": "gpt-4o-mini"},
+    {"key": "enable_real_actor_names", "label": "真实演员名", "type": "bool", "default": "false", "help": "从 AVBASE 搜索并替换为真实演员名"},
+    {"key": "enable_badges", "label": "中文字幕徽章", "type": "bool", "default": "false", "help": "在海报上添加中文字幕徽章"},
+    {"key": "badge_url", "label": "徽章图片", "type": "text", "default": "zimu.png", "help": "徽章图片文件名或 URL"},
+    {"key": "enable_collections", "label": "添加系列标签", "type": "bool", "default": "false", "help": "将系列名加入类型标签（Muvyo 无合集字段，以类型替代）"}
+  ],
+  "settings": {
+    "description": "对接自部署的 MetaTube Server，为 Vyo 媒体库提供影片元数据刮削。\n\n先部署 MetaTube Server（https://github.com/metatube-community），再在上方填写服务地址与令牌。影片文件按番号命名（如 SSIS-001）以获得最佳识别效果。\n\n图片由 Muvyo 经服务地址代为取回，建议服务地址使用 HTTPS。",
+    "links": [
+      {"title": "MetaTube 文档", "url": "https://metatube-community.github.io/wiki/"},
+      {"title": "命名规则", "url": "https://metatube-community.github.io/wiki/naming-rules/"},
+      {"title": "服务部署", "url": "https://metatube-community.github.io/wiki/server-deployment/"}
+    ],
+    "sections": [
+      {"title": "认证", "description": "填写服务地址与访问令牌。", "fields": ["token"]},
+      {"title": "刮削", "fields": ["image_quality", "enable_directors", "enable_ratings", "enable_collections"]},
+      {"title": "命名模板", "description": "自定义标题与副标题的生成规则。", "fields": ["enable_template", "name_template", "tagline_template"]},
+      {"title": "文本替换", "description": "对标题、类型、演员做文本替换，每行一条、等号分隔。", "fields": ["enable_title_substitution", "title_substitution_table", "enable_genre_substitution", "genre_substitution_table", "enable_actor_substitution", "actor_substitution_table"]},
+      {"title": "来源过滤", "description": "多个来源返回结果时按优先级保留和排序。", "fields": ["enable_provider_filter", "provider_filter"]},
+      {"title": "翻译", "description": "通过 MetaTube Server 翻译标题与简介，按所选引擎填写对应密钥。", "fields": ["enable_translation", "translation_engine", "translation_mode", "translation_to", "baidu_app_id", "baidu_app_key", "google_api_key", "deepl_api_key", "openai_api_key", "openai_model"]},
+      {"title": "高级", "description": "演员名与徽章。", "fields": ["enable_real_actor_names", "enable_badges", "badge_url"]}
+    ]
+  },
+  "capabilities": {
+    "metadata": {"media_types": ["movie"]}
+  }
+}
