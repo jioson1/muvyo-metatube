@@ -18,12 +18,12 @@
  },
  "payload": {
   "plugin_id": "jioson1.metadata",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "files": {
    "README.md": "92a95dfc24877200c30da07f1909eb25fe472a73ba43c00f5d90fd55b9eba6fc",
-   "encrypted.json": "aa2097bcf1f451d0d77e62d10784b6e8642574d4c4b424aa2b4930d6bffc73d7",
-   "manifest.json": "259a91e33fd5c637e2483089fbc9f90d72f8b1beb90f6ed4aced6f736f94e7bd"
+   "encrypted.json": "e46d69c3690e477ff47351abc745701e7da99ef2ef1ca6eb2fab30a23099d7ac",
+   "manifest.json": "94232e37a1f27f8cb96cab7bbf1919a696ffb6307c11321639d2631b012f21c0"
   }
  },
- "signature": "n38Tvjpg5kPBuuj4IDaa9plYA6yVTRjVtkdeUsUrNrRrn6mWsnNZyl1/QrFWoNBS4LdD0rsTiWn0fRFzgXLcDg=="
+ "signature": "WDS81V8VBB/mnwzxK5KnaqyCLa8w7kpAGK6U5kdZJMkiCilcPAr6JfvtKOmUi3IAtLFrgZYY6Q76BX/1Sj5jBA=="
 }
