@@ -1,0 +1,29 @@
+{
+ "version": 1,
+ "certificate": {
+  "certificate": {
+   "aud": "mediavault-addon-author",
+   "version": 1,
+   "serial": 8,
+   "author_id": "gh-129307225",
+   "author": "jioson1",
+   "namespace": "jioson1",
+   "public_key": "ltN6D8xWs0V6p+Dekzs5C6i6hLdJW2zKUVhywGNFd8c=",
+   "issued_at": 1791042922,
+   "expires_at": 1822578922,
+   "content_key": "mz8WgJaDZLUeUHDcdVSadwF7a/X9P9ZOUSKaye4UWQA=",
+   "content_key_version": 1
+  },
+  "signature": "vfeXm+L/yhgDB8MjWgJWeHoLAsqHz2yXedkS2XBylK5OU1SXisC5dZHqeTRAfL/EMUS5ClMgBo+2WvmYYDgWAg=="
+ },
+ "payload": {
+  "plugin_id": "jioson1.vyo-missing",
+  "version": "1.0.0",
+  "files": {
+   "README.md": "290a4b89a1f1a82ff1bb7c82d3cc8ccafd246dade6457d436ff817cdbd1a3fcd",
+   "encrypted.json": "71de9dab1b0cc14de515fee087f3e70b2460e9001d425409470c270c41d67f2b",
+   "manifest.json": "28f62b2248a8cb9c33cb898d8b84661ca634eb1e465be97368c2babb5d5a1042"
+  }
+ },
+ "signature": "9rQZ2S51bdMW9ZMDde2pdNwBsNVg4nWwCW5PXjNENdOncE9qWNZqLAM+hZKLbkgUiS8I0HK4H3uunvaFZA4fCw=="
+}

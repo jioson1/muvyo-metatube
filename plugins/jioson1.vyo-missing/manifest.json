@@ -1,0 +1,29 @@
+{
+  "api": 1,
+  "id": "jioson1.vyo-missing",
+  "name": "缺集订阅桥",
+  "version": "1.0.0",
+  "author": "jioson1",
+  "description": "把 Muvyo 的 Vyo 媒体库同步完成事件实时转发到 MoviePilot 缺集订阅插件，由 MP 对比 Vyo 媒体库与 TMDB 集数并自动订阅缺失季。\n\n只处理 library.sync_completed，不转发 Muvyo 的资源接收、整理事件。",
+  "entry": "main.js",
+  "permissions": {
+    "service": {"label": "MoviePilot 地址", "help": "MoviePilot 访问地址，例如 http://127.0.0.1:3000。内网地址需在 Muvyo 中确认允许访问。"}
+  },
+  "config": [
+    {"key": "api_token", "label": "MoviePilot API Token", "type": "secret", "required": true, "help": "缺集订阅插件接收地址使用的 MoviePilot API Token。"},
+    {"key": "mp_path", "label": "Webhook 路径", "type": "text", "default": "/api/v1/plugin/EpisodeNoExist/muvyo_webhook", "help": "保持默认即可，除非 MP 插件 API 路径被修改。"}
+  ],
+  "settings": {
+    "description": "安装后请在 Muvyo 的插件设置里打开「接收 Muvyo 事件」。\n\nMuvyo 原生事件与「Webhook 推送」互不依赖，不需要另外配置 Muvyo Webhook 推送地址。\n\n插件收到 library.sync_completed 后，会把事件连同 Vyo 媒体库信息实时转发到 MoviePilot，由缺集订阅插件对比媒体库和 TMDB 集数并在插件 UI 记录结果。",
+    "links": [
+      {"title": "Muvyo 插件文档", "url": "https://muvyo.com/docs#third-party-addons"},
+      {"title": "Muvyo 开发指南", "url": "https://github.com/thsrite/muvyo-addon-guide"}
+    ],
+    "sections": [
+      {"title": "MoviePilot", "description": "填写 MoviePilot 地址与 API Token。", "fields": ["api_token", "mp_path"]}
+    ]
+  },
+  "capabilities": {
+    "webhook": {"events": ["library.sync_completed"]}
+  }
+}
